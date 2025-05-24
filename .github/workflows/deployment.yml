@@ -7,8 +7,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
            - name: Code Checkout
-             run: |
-                echo "Checking out code..."
-                echo "${{tojson(github)}}"
-                git clone https://github.com/${{github.repository}}.git
+             uses: actions/checkout@v4
+           - name: install NodeJS
+             uses: actions/setup-node@v4
+             with:
+                 node-version: '20'
+           - name: Install Dependencies
+             run: npm clean-install
+           - name: Run Tests
+             run: npm test                    
 
