@@ -1,0 +1,14 @@
+name: Deployment
+on: 
+    - push
+    - workflow_dispatch
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+           - name: Code Checkout
+             run: |
+                echo "Checking out code..."
+                echo "${{tojson(github)}}"
+                git clone https://github.com/${{github.repository}}.git
+
